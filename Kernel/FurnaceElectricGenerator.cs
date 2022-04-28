@@ -42,15 +42,15 @@ namespace AutomaticCraft.Kernel
 
         public static bool PlayerUseItemOn_Event(PlayerUseItemOnEvent ev)
         {
-            using var blockinstance = ev.mBlockInstance;
+            using var blockinstance = ev.BlockInstance;
             using var pos = blockinstance.Position;
             if (p == pos)
                 return true;
             else
             {
                 p = pos;
-                using var item = ev.mItemStack;
-                using var player = ev.mPlayer;
+                using var item = ev.ItemStack;
+                using var player = ev.Player;
 
                 TryCreateGenrator(item, player, blockinstance);
             }

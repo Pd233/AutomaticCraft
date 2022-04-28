@@ -20,7 +20,7 @@ namespace PluginMain
             PlayerUseItemOnEvent.Event += ev =>
             {
 
-                Logger.warn.WriteLine(ev.mBlockInstance.Block.TypeName);
+                Logger.warn.WriteLine(ev.BlockInstance.Block.TypeName);
 
                 return true;
             };
