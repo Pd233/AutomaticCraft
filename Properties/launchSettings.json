@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Main": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Desktop\\bds\\bedrock_server_mod.exe",
+      "commandLineArgs": "F:\\Desktop\\bds\\bedrock_server_mod.exe",
+      "workingDirectory": "F:\\Desktop\\bds"
+    }
+  }
+}
