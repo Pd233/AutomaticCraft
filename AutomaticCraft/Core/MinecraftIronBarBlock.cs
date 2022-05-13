@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AutomaticCraft.Core
 {
-    public class CraftingTableBlockClass
+    public class MinecraftIronBarBlock
     {
-        public const short CraftingTableBlockId = 58;
+        public const short Id = 101;
     }
 }

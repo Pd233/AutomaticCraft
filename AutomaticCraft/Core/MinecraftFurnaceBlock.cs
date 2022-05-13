@@ -11,15 +11,15 @@ using MC;
 
 namespace AutomaticCraft.Core
 {
-    public class FurnaceBlockClass : AutomaticCraftBase
+    public class MinecraftFurnaceBlock : AutomaticCraftBase
     {
-        static FurnaceBlockClass()
+        static MinecraftFurnaceBlock()
         {
             Logger.warn.WriteLine("Setup FurnaceBlockClass.");
             Thook.RegisterHook<FurnaceBlockClass_SetLit_Hook, SetLit>();
         }
 
-        public const int FurnaceBlockId = 61;
+        public const int Id = 61;
 
         public delegate void SetLitEventHandler(char a1, BlockSource source, BlockPos pos, uint a4, long a5, long a6);
 

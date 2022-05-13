@@ -12,48 +12,47 @@ namespace AutomaticCraft.Kernel
 {
     public class FurnaceElectricGenerator : ElectricGenerator
     {
-        //////////////////////////////////////////////////////
-
-        static FurnaceElectricGenerator()
-        {
-            FurnaceBlockClass.OnSetLit += GeneratorUpdate;
-        }
-
-        //////////////////////////////////////////////////////
-
-
         public FurnaceElectricGenerator(BlockPos position) : base(position)
         {
         }
 
         public override double Power => 0.2;
 
-        public override ulong MaxCapacity => 10000;
+        public override double MaxCapacity => 1000;
 
-        public void Setup()
+        public override void Operate()
         {
-
+            if (SpareCapacity > Power)
+                Storage += Power;
         }
-        //////////////////////////////////////////////////////
+
+        ////////////////static////////////////
+
+        public static void Setup()
+        {
+            MinecraftFurnaceBlock.OnSetLit += GeneratorUpdate;
+            PlayerUseItemOnEvent.Event += PlayerUseItemOn_Event;
+        }
 
         static readonly List<FurnaceElectricGenerator> FurnaceGenerators = new();
 
-        static BlockPos p = BlockPos.ZERO;
+        //static BlockPos p = BlockPos.ZERO;
 
         public static bool PlayerUseItemOn_Event(PlayerUseItemOnEvent ev)
         {
             using var blockinstance = ev.BlockInstance;
-            using var pos = blockinstance.Position;
-            if (p == pos)
-                return true;
-            else
-            {
-                p = pos;
-                using var item = ev.ItemStack;
-                using var player = ev.Player;
+            using var block = blockinstance.Block;
 
-                TryCreateGenrator(item, player, blockinstance);
-            }
+            if (block.Id != MinecraftFurnaceBlock.Id)
+                return true;
+
+            using var pos = blockinstance.Position;
+
+            using var item = ev.ItemStack;
+            using var player = ev.Player;
+
+            TryCreateGenrator(item, player, blockinstance);
+
             return true;
         }
 
@@ -63,7 +62,7 @@ namespace AutomaticCraft.Kernel
                 return;
             else
             {
-                using var pos = block.Position;
+                var pos = block.Position;
                 bool signal = true;
 
                 foreach (var generator in FurnaceGenerators)
@@ -75,6 +74,7 @@ namespace AutomaticCraft.Kernel
                 if (signal)
                 {
                     FurnaceGenerators.Add(new(pos));
+                    Logger.info.WriteLine("Create FurnaceElectricGenerator");
                 }
             }
         }
@@ -92,7 +92,6 @@ namespace AutomaticCraft.Kernel
             }
         }
 
-        //////////////////////////////////////////////////////
 
     }
 }

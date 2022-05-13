@@ -6,16 +6,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Reference Include="LiteLoader.NET">
-      <HintPath>..\..\LLNET\x64\Release\LiteLoader.NET.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="copy /Y &quot;$(TargetPath)&quot; &quot;F:\Desktop\bds\plugins&quot;" />
   </Target>
+
+  <ItemGroup>
+    <Reference Include="AutomaticCraftLib">
+      <HintPath>..\x64\Release\AutomaticCraftLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteLoader.NET">
+      <HintPath>..\Lib\LiteLoader.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

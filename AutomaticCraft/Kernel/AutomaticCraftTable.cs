@@ -6,19 +6,26 @@ using System.Text;
 using System.Threading.Tasks;
 using AutomaticCraft.Kernel.Interfaces;
 
+
 namespace AutomaticCraft.Kernel
 {
-    public abstract class ElectricGenerator : BlockMachine
+    public class AutomaticCraftTable : BlockMachine
     {
-        protected ElectricGenerator(BlockPos position)
-            : base(position)
+        public AutomaticCraftTable(BlockPos position) : base(position)
         {
             X_Positive = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Output);
             X_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Output);
             Z_Positive = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Output);
             Z_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Output);
-            Y_Positive = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Output);
-            Y_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Output);
+        }
+
+        public override double Power => 10;
+
+        public override double MaxCapacity => 500;
+
+        public override void Operate()
+        {
+            throw new NotImplementedException();
         }
     }
 }
