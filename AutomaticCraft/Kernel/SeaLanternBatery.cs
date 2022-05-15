@@ -16,11 +16,12 @@ namespace AutomaticCraft.Kernel
         {
         }
 
-        public override double MaxCapacity => 5000;
+        public override ulong MaxCapacity => 50000;
+
+        public override string Name => "SeaLanternBatery";
 
         public override void Operate()
         {
-            throw new NotImplementedException();
         }
 
         ////////////////static////////////////
@@ -30,7 +31,7 @@ namespace AutomaticCraft.Kernel
             PlayerUseItemOnEvent.Event += PlayerUseItemOn_Event;
         }
 
-        static readonly List<SeaLanternBatery> battery =new();
+        static readonly List<SeaLanternBatery> battery = new();
 
         public static bool PlayerUseItemOn_Event(PlayerUseItemOnEvent ev)
         {

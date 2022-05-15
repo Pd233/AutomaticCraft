@@ -8,15 +8,15 @@ namespace AutomaticCraft.Kernel
 {
     public abstract class Accumulator : AutomaticCraftBase
     {
-        public abstract double MaxCapacity { get; }
-        public double Storage { get; protected set; }
-        public double SpareCapacity { get => MaxCapacity - Storage; }
+        public abstract ulong MaxCapacity { get; }
+        public ulong Storage { get; protected set; }
+        public ulong SpareCapacity { get => MaxCapacity - Storage; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="e"></param>
-        public void Charge(ref double e)
+        public void Charge(ref ulong e)
         {
             if (SpareCapacity >= e)
             {
@@ -36,9 +36,9 @@ namespace AutomaticCraft.Kernel
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        public double DisCharge(double e)
+        public ulong DisCharge(ulong e)
         {
-            double ret;
+            ulong ret;
             if (Storage >= e)
             {
                 ret = e;

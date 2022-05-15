@@ -8,6 +8,13 @@
 #include <MC/ItemStackBase.hpp>
 #include <MC/Item.hpp>
 
+#include <MC/SetTitlePacket.hpp>
+#include <MC/TitleRawCommand.hpp>
+#include <MC/Command.hpp>
+#include <MC/Level.hpp>	
+
+#include <MC/CommandSelector.hpp>
+
 #include <LoggerAPI.h>
 using System::String;
 
@@ -33,9 +40,9 @@ void _Test(Level& level) {
 			for (auto& item : ingredients) {
 				str += " , ";
 				str += item.descriptor.getSerializedNameAndAux();
-				
+
 			}
-			
+
 			logger.info("string:<{}>,Ingredients:<{}>,IngredientsCount:<{}>", _kv.first, str, ingredients.size());
 		}
 	}

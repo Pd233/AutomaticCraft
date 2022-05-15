@@ -47,7 +47,7 @@ namespace AutomaticCraft.Kernel.Interfaces
             if (@interface.Connection == null)
                 return;
 
-            var val = TestFunction(@interface.Connection.Machine.Storage - @interface.Machine.Storage);
+            var val = (ulong)TestFunction(@interface.Connection.Machine.Storage - @interface.Machine.Storage);
             if (val <= 0)
                 return;
 
@@ -62,7 +62,7 @@ namespace AutomaticCraft.Kernel.Interfaces
             if (@interface.Connection == null)
                 return;
 
-            var val = TestFunction(@interface.Machine.Storage - @interface.Connection.Machine.Storage);
+            var val = (ulong)TestFunction(@interface.Machine.Storage - @interface.Connection.Machine.Storage);
             if (val <= 0)
                 return;
 

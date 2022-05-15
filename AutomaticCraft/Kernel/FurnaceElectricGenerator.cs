@@ -16,9 +16,11 @@ namespace AutomaticCraft.Kernel
         {
         }
 
-        public override double Power => 0.2;
+        public override ulong Power => 2;
 
-        public override double MaxCapacity => 1000;
+        public override ulong MaxCapacity => 10000;
+
+        public override string Name => "FurnaceElectricGenerator";
 
         public override void Operate()
         {

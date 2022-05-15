@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AutomaticCraft.Core
 {
-    public class MinecraftCraftingTableBlock
+    public class MinecraftGoldIngotItem
     {
-        public const short Id = 58;
+        public const short Id = 306;
     }
 }

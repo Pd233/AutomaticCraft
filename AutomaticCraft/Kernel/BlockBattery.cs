@@ -13,14 +13,14 @@ namespace AutomaticCraft.Kernel
     {
         public BlockBattery(BlockPos position) : base(position)
         {
-            X_Positive = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
-            X_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
-            Z_Positive = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
-            Z_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
-            Y_Positive = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
-            Y_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
+            Ele_X_Positive = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
+            Ele_X_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
+            Ele_Z_Positive = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
+            Ele_Z_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
+            Ele_Y_Positive = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
+            Ele_Y_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Interflow);
         }
 
-        public override double Power => 0;
+        public override ulong Power => 0;
     }
 }

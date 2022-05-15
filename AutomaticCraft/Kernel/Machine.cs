@@ -15,7 +15,13 @@ namespace AutomaticCraft.Kernel
         {
             machines.Add(this);
         }
-        public abstract double Power { get; }
+
+        public abstract string Name { get; }
+
+        /// <summary>
+        /// Machine Power per Tick(1/20s)
+        /// </summary>
+        public abstract ulong Power { get; }
 
         public bool IsActive { get; protected set; } = false;
 
