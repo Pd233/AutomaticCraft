@@ -13,30 +13,31 @@ namespace AutomaticCraft.Kernel.Interfaces
         public ElectricInterface(Machine machine, InterfaceConnectionMode mode)
             : base(machine, mode)
         {
-            ElectricInterfaces.Add(this);
+            //ElectricInterfaces.Add(this);
         }
 
         static ElectricInterface()
         {
-            ScheduleAPI.Repeat(Tick, 1);
+            ScheduleAPI.Repeat(Tick, 4);
         }
 
-        static readonly List<ElectricInterface> ElectricInterfaces = new();
+        //static readonly List<ElectricInterface> ElectricInterfaces = new();
 
         static void Tick()
         {
-            foreach (var electricInterface in ElectricInterfaces)
+            foreach (var electricInterface in ConnectedInterfaces)
             {
-                switch (electricInterface.ConnectionMode)
+                var i = electricInterface.Item1;
+                switch (i.ConnectionMode)
                 {
                     case InterfaceConnectionMode.Input:
-                        InputTick(electricInterface);
+                        InputTick(i);
                         break;
                     case InterfaceConnectionMode.Output:
-                        OutputTick(electricInterface);
+                        OutputTick(i);
                         break;
                     case InterfaceConnectionMode.Interflow:
-                        InterflowTick(electricInterface);
+                        InterflowTick(i);
                         break;
                 }
             }
@@ -99,5 +100,5 @@ namespace AutomaticCraft.Kernel.Interfaces
                     break;
             }
         }
-    }
+    } 
 }

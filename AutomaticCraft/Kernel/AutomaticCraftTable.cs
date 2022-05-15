@@ -20,6 +20,9 @@ namespace AutomaticCraft.Kernel
             Ele_X_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Input);
             Ele_Z_Positive = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Input);
             Ele_Z_Negative = new(this, InterfaceBase<ElectricInterface>.InterfaceConnectionMode.Input);
+
+            Item_Y_Positive  = new(this, InterfaceBase<ItemInterface>.InterfaceConnectionMode.Input);
+            Item_Y_Negative  = new(this, InterfaceBase<ItemInterface>.InterfaceConnectionMode.Output);
         }
 
         public override ulong Power => 100;
@@ -28,7 +31,11 @@ namespace AutomaticCraft.Kernel
 
         public override string Name => "AutomaticCraftTable";
 
-        
+        public ItemInterface Item_Y_Positive { get; protected set; }
+        public ItemInterface Item_Y_Negative { get; protected set; }
+
+
+
 
         public override void Operate()
         {
@@ -42,7 +49,7 @@ namespace AutomaticCraft.Kernel
             PlayerUseItemOnEvent.Event += PlayerUseItemOn_Event;
         }
 
-        public static bool PlayerUseItemOn_Event(PlayerUseItemOnEvent ev)
+        static bool PlayerUseItemOn_Event(PlayerUseItemOnEvent ev)
         {
             using var blockinstance = ev.BlockInstance;
             using var block = blockinstance.Block;
@@ -59,8 +66,9 @@ namespace AutomaticCraft.Kernel
 
             return true;
 
-            
+
         }
+
 
         static readonly List<AutomaticCraftTable> AutomaticCraftTables = new();
 

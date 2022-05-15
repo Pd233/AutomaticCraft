@@ -30,7 +30,7 @@ namespace AutomaticCraft.Kernel
         {
             if (!IsConnected)
                 return;
-            if(Connection != null)
+            if (Connection != null)
             {
                 Connection.Connection = null;
                 Connection.IsConnected = false;
@@ -39,11 +39,13 @@ namespace AutomaticCraft.Kernel
             IsConnected = false;
         }
 
+        protected readonly static List<Tuple<T, T>> ConnectedInterfaces = new();
+
         public static bool Connect(T a, T b)
         {
-            if(a.IsConnected)
+            if (a.IsConnected)
                 a.DisConnect();
-            if(b.IsConnected)
+            if (b.IsConnected)
                 b.DisConnect();
 
             if (a.ConnectionMode == InterfaceConnectionMode.Input && b.ConnectionMode == InterfaceConnectionMode.Output)
@@ -52,6 +54,7 @@ namespace AutomaticCraft.Kernel
                 b.Connection = a;
                 a.IsConnected = true;
                 b.IsConnected = true;
+                ConnectedInterfaces.Add(new(a, b));
                 return true;
             }
             else if (a.ConnectionMode == InterfaceConnectionMode.Output && b.ConnectionMode == InterfaceConnectionMode.Input)
@@ -60,6 +63,7 @@ namespace AutomaticCraft.Kernel
                 b.Connection = a;
                 a.IsConnected = true;
                 b.IsConnected = true;
+                ConnectedInterfaces.Add(new(a, b));
                 return true;
             }
             else if (a.ConnectionMode == InterfaceConnectionMode.Interflow || b.ConnectionMode == InterfaceConnectionMode.Interflow)
@@ -68,6 +72,7 @@ namespace AutomaticCraft.Kernel
                 b.Connection = a;
                 a.IsConnected = true;
                 b.IsConnected = true;
+                ConnectedInterfaces.Add(new(a, b));
                 return true;
             }
             else
